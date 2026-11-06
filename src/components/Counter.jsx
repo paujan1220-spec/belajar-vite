@@ -9,9 +9,11 @@ function Counter() {
 
       <button onClick={() => setCount(count + 1)}>Tambah </button>
 
-      <button onClick={() => (setCount > 0 ? count - 1 : 0)}>Kurang </button>
+      <button onClick={() => setCount(count > 0 ? count - 1 : 0)}>
+        Kurang
+      </button>
 
-      <button onClick={() => setCount(0)}>reset </button>
+      <button onClick={() => setCount(0)}>reset</button>
     </div>
   );
 }
