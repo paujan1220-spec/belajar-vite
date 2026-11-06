@@ -1,25 +1,25 @@
-import { useState, useEffect } from "react";
-import axios from "axios";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Kartu from "./components/Kartu";
+import Tombol from "./components/Tombol";
+import Counter from "./components/Counter";
+import FormNama from "./components/FormNama";
+import TodoList from "./components/TodoList";
 
 function App() {
-  const [users, setUsers] = useState([]);
-
-  useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/users")
-      .then((res) => setUsers(res.data));
-  }, []);
-
   return (
     <div>
-      <h1>Hello, ini project React pertama gue!</h1>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.name}</li>
-        ))}
-      </ul>
+      <Header />
+      <Kartu nama="Paujan" umur="25" aktif={true} />
+      <Kartu nama="Budi" umur="26" aktif={true} />
+
+      <Kartu teks="Simpan" warna="green" />
+      <Kartu teks="Hapus" warna="red" />
+
+      <Counter />
+      <FormNama />
+      <TodoList />
     </div>
   );
 }
-
 export default App;
