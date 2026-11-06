@@ -1,5 +1,6 @@
 function Footer() {
-  return <p>Dibuat oleh saya, 2026</p>;
+  const tahun = new Date().getFullYear();
+  return <footer className="footer">© {tahun} Nama Lo. React Sederhana gue.</footer>;
 }
 
 export default Footer;

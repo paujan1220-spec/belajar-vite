@@ -5,22 +5,14 @@ function FormNama() {
   const [email, setEmail] = useState("");
 
   return (
-    <div>
-      <input
-        placeholder="Nama"
-        value={nama}
-        onChange={(e) => setNama(e.target.value)}
-      />
-
-      <input
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-
-      <p>Nama: {nama}</p>
-      <p>Email: {email}</p>
+    <div className="panel form-nama">
+      <h2>Form</h2>
+      <input className="input" placeholder="Nama" value={nama} onChange={(e) => setNama(e.target.value)} />
+      <input className="input" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
+      <p className="hasil">Nama: {nama || "-"}</p>
+      <p className="hasil">Email: {email || "-"}</p>
     </div>
   );
 }
+
 export default FormNama;

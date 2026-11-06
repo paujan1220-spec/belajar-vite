@@ -1,6 +1,10 @@
 function Header() {
-  // bikin component; nama wajib diawali huruf kapital
-  return <h1>React Sederhana </h1>; // return = tampilan yang dimunculkan (ditulis pakai JSX)
+  return (
+    <header className="header">
+      <h1>React Sederhana</h1>
+      <p>Catatan belajar frontend gue</p>
+    </header>
+  );
 }
 
-export default Header; // supaya file lain bisa import component ini
+export default Header;

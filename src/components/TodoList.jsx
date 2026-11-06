@@ -1,61 +1,52 @@
 import { useState } from "react";
 
 function TodoList() {
-  const [input, setInput] = useState(""); // isi kolom input
-  const [tugas, setTugas] = useState([]); // daftar tugas (belum dipakai)
+  const [input, setInput] = useState("");   // isi kolom input
+  const [tugas, setTugas] = useState([]);   // daftar tugas
 
   const tambah = (e) => {
-    e.preventDefault();
-    if (input.trim() == "") return;
+    e.preventDefault();                     // cegah halaman reload
+    if (input.trim() === "") return;        // input kosong: berhenti
     setTugas([...tugas, { id: Date.now(), teks: input, selesai: false }]);
-    setInput("");
+    setInput("");                           // kosongkan input
   };
 
   const hapus = (id) => {
     setTugas(tugas.filter((t) => t.id !== id));
   };
 
-  const toggleSelesai = (id) => {
+  const toggle = (id) => {
     setTugas(
-      tugas.map((t) =>
-        t.id === id ? { ...t, selesai: !t.selesai } : t
-      )
+      tugas.map((t) => (t.id === id ? { ...t, selesai: !t.selesai } : t))
     );
   };
 
   return (
-    <div>
+    <div className="panel">
       <h2>To-do List</h2>
-      <form onSubmit={tambah}>
-        {" "}
-        {/* pembungkus input + tombol */}
+
+      <form className="todo-form" onSubmit={tambah}>
         <input
+          className="input"
           placeholder="Tulis tugas..."
-          value={input} // isi input dikontrol state
-          onChange={(e) => setInput(e.target.value)} // tiap ngetik, simpan ke state
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
         />
-        <button type="submit">Tambah</button>
+        <button className="btn" type="submit">Tambah</button>
       </form>
 
-{tugas.length === 0 ? (
-        <p>Belum ada tugas</p>
-      ) : (
-        <p>Jumlah tugas: {tugas.length}</p>
-      )}
+      {tugas.length === 0 && <p className="kosong">Belum ada tugas</p>}
 
-      <ul>
+      <ul className="todo-list">
         {tugas.map((t) => (
-          //   <li key={t.id}>{t.teks}</li>
-          <li key={t.id}>
-            {t.teks}
-            <button onClick={() => hapus(t.id)}>Hapus</button>
-            <button onClick={() => toggleSelesai(t.id)}>
-              {t.selesai ? "Batal Selesaikan" : "Tandai Selesai"}
+          <li key={t.id} className={t.selesai ? "todo-item selesai" : "todo-item"}>
+            <span onClick={() => toggle(t.id)}>{t.teks}</span>
+            <button className="btn btn-danger btn-kecil" onClick={() => hapus(t.id)}>
+              Hapus
             </button>
           </li>
         ))}
-      </ul>{" "}
-      {/* sementara, buat ngecek */}
+      </ul>
     </div>
   );
 }

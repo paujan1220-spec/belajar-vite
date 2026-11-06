@@ -1,11 +1,14 @@
 function Kartu({ nama, umur, aktif = false }) {
-  // terima props; { } = destructuring; aktif = false -> nilai default
   return (
-    <div style={{ border: "1px solid #1328e9", padding: 12, margin: 8 }}>
+    <div className="kartu">
+      <div className="avatar">{nama ? nama[0] : "?"}</div>   {/* huruf pertama nama */}
       <h3>{nama}</h3>
-      <p>umur: {umur}</p>
-      <p>{aktif ? "Aktif" : "NonAktif"}</p>
+      <p>Umur: {umur}</p>
+      <span className={aktif ? "badge aktif" : "badge"}>     {/* class berubah sesuai props */}
+        {aktif ? "Aktif" : "Nonaktif"}
+      </span>
     </div>
   );
 }
+
 export default Kartu;
